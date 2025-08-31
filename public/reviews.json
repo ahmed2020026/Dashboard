@@ -1,0 +1,80 @@
+{
+    "reviews-for-products": [
+        {
+            "id": 1,
+            "productId": 1,
+            "userId": 2,
+            "username": "John Doe",
+            "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
+            "rating": 5,
+            "comment": "Amazing headphones! Noise cancelling is perfect and the sound quality is excellent.",
+            "date": "2025-08-20"
+        },
+        {
+            "id": 2,
+            "productId": 2,
+            "userId": 3,
+            "username": "Emily Smith",
+            "avatar": "https://randomuser.me/api/portraits/women/3.jpg",
+            "rating": 4,
+            "comment": "Great controller, very comfortable but the battery life could be better.",
+            "date": "2025-08-22"
+        },
+        {
+            "id": 3,
+            "productId": 3,
+            "userId": 5,
+            "username": "Ahmed Ali",
+            "avatar": "https://randomuser.me/api/portraits/men/5.jpg",
+            "rating": 5,
+            "comment": "Best gaming headset I've ever used! The RGB is just a bonus.",
+            "date": "2025-08-23"
+        },
+        {
+            "id": 4,
+            "productId": 4,
+            "userId": 7,
+            "username": "Sophia Johnson",
+            "avatar": "https://randomuser.me/api/portraits/women/7.jpg",
+            "rating": 5,
+            "comment": "Sony did it again! Superb noise cancellation and very comfy for long use.",
+            "date": "2025-08-24"
+        },
+        {
+            "id": 5,
+            "productId": 5,
+            "userId": 9,
+            "username": "Mohamed Hassan",
+            "avatar": "https://randomuser.me/api/portraits/men/9.jpg",
+            "rating": 4,
+            "comment": "Innovative solar charging headphones. Works great outdoors but indoor charging is slower.",
+            "date": "2025-08-25"
+        }
+    ],
+    "reviews-for-website": [
+        {
+            "id": 1,
+            "name": "Omar Khaled",
+            "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
+            "rating": 5,
+            "comment": "The website is very easy to use and the checkout process is smooth.",
+            "date": "2025-08-15"
+        },
+        {
+            "id": 2,
+            "name": "Sara Ahmed",
+            "avatar": "https://randomuser.me/api/portraits/women/45.jpg",
+            "rating": 4,
+            "comment": "I like the design of the site, but search could be a bit faster.",
+            "date": "2025-08-20"
+        },
+        {
+            "id": 3,
+            "name": "Mohamed Adel",
+            "avatar": "https://randomuser.me/api/portraits/men/14.jpg",
+            "rating": 5,
+            "comment": "Great experience overall, I trust this store for my electronics.",
+            "date": "2025-08-22"
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+  "total": 750,
+  "totalSales": 10000,
+  "salesVolume": 800,
+  "orders": [
+    {
+      "id": 1,
+      "userId": 2,
+      "items": [
+        { "productId": 1, "quantity": 2 },
+        { "productId": 3, "quantity": 1 }
+      ],
+      "totalPrice": 3400,
+      "customerName": "Karim Hassan",
+      "status": "pending",
+      "shippingAddress": "Cairo, Egypt",
+      "createdAt": "2025-08-20T12:30:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "items": [
+        { "productId": 2, "quantity": 1 }
+      ],
+      "totalPrice": 1200,
+      "status": "shipped",
+      "customerName": "Omar Nabil",
+      "paymentMethod": "cash_on_delivery",
+      "shippingAddress": "Saudi Arabia",
+      "createdAt": "2025-08-21T15:45:00Z"
+    },
+    {
+      "id": 3,
+      "userId": 4,
+      "items": [
+        { "productId": 4, "quantity": 1 },
+        { "productId": 5, "quantity": 3 }
+      ],
+      "totalPrice": 5800,
+      "status": "delivered",
+      "customerName": "Hossam Khaled",
+      "paymentMethod": "credit_card",
+      "shippingAddress": "Giza, Egypt",
+      "createdAt": "2025-08-22T10:10:00Z"
+    },
+    {
+      "id": 4,
+      "userId": 2,
+      "items": [
+        { "productId": 6, "quantity": 1 }
+      ],
+      "totalPrice": 2500,
+      "customerName": "Mostafa Ibrahim",
+      "status": "canceled",
+      "paymentMethod": "credit_card",
+      "shippingAddress": "Tunisia",
+      "createdAt": "2025-08-23T09:20:00Z"
+    }
+  ]
+}
