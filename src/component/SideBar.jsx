@@ -20,7 +20,7 @@ export const SideBar = () => {
         <>
             <div
                 ref={SidebarEle}
-                className={`fixed h-full w-60 bg-white p-4 shadow-xl z-10 text-sm font-medium transition-all duration-300 md:static md:shadow-none
+                className={`fixed top-20.5 -left-full md:left-0 h-full w-60 bg-white p-4 shadow-xl z-10 text-sm font-medium transition-all duration-300 md:shadow-none
         ${openMenu ? "-left-full" : "left-0"}`}
             >
                 <ul className="text-gray-700 space-y-1">
