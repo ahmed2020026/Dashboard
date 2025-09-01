@@ -14,7 +14,7 @@ export const NavBar = () => {
             {/* Logo + Menu */}
             <div className="flex items-center gap-5">
                 <p className="font-bold text-2xl text-gray-800 tracking-wide">
-                    <span className="text-sky-500">G</span>-Store <span className="text-gray-500">Admin</span>
+                    <span className="text-sky-500">G</span>-Store <span className="text-gray-500"><span className='hidden md:inline-block'>Admin</span></span>
                 </p>
 
                 {/* Menu Icon (Mobile only) */}
