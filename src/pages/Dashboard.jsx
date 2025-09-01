@@ -29,10 +29,10 @@ export const Dashboard = () => {
     return (
         <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-                <Kpi title='Total Users' icon={<GroupIcon />} total={`${User[0]?.total}k`} />
-                <Kpi title='Total Products' icon={<CategoryIcon />} total={`${Order.salesVolume}k`} />
-                <Kpi title='Total Orders' icon={<ViewListIcon />} total={`${Order.total}k`} />
-                <Kpi title='Total Sales' icon={<RealEstateAgentIcon />} total={`${Order.totalSales}$`} />
+                <Kpi title='Total Users' bgColor={'bg-gradient-to-r from-indigo-500 to-purple-500'} icon={<GroupIcon />} total={`${User[0]?.total}k`} />
+                <Kpi title='Total Products' bgColor={'bg-gradient-to-r from-teal-400 to-cyan-500'} icon={<CategoryIcon />} total={`${Order.salesVolume}k`} />
+                <Kpi title='Total Orders' bgColor={'bg-gradient-to-r from-orange-400 to-pink-500'} icon={<ViewListIcon />} total={`${Order.total}k`} />
+                <Kpi title='Total Sales' bgColor={'bg-gradient-to-r from-green-400 to-emerald-600'} icon={<RealEstateAgentIcon />} total={`${Order.totalSales}$`} />
             </div>
             <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-3 md:gap-3 items-start">
                 <div className="md:col-span-2">

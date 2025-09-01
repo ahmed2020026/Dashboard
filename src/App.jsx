@@ -8,10 +8,10 @@ import { Route, Routes } from "react-router-dom"
 export const App = () => {
   return (
     <>
-      <header className="shadow-xl md:shadow bg-white fixed w-full z-10">
+      <header className="shadow-xl md:shadow bg-white fixed w-full z-10 py-3">
         <NavBar />
       </header>
-      <main className="flex min-h-screen pt-15 ">
+      <main className="flex min-h-screen pt-21 ">
         <aside className="w-0 md:w-60">
           <SideBar />
         </aside>
