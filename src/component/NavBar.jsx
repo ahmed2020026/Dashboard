@@ -10,25 +10,43 @@ export const NavBar = () => {
         SetOpenMenu(e)
     }
     return (
-        <div className='p-3 flex justify-between items-center'>
-            <div className="logo pb-1 flex items-center gap-5">
-                <p className='font-bold text-black text-2xl'>
-                    <span className='text-sky-500'>G</span>-Store Ad.
+        <div className="px-5 py-5 flex justify-between items-center bg-white shadow-md">
+            {/* Logo + Menu */}
+            <div className="flex items-center gap-5">
+                <p className="font-bold text-2xl text-gray-800 tracking-wide">
+                    <span className="text-sky-500">G</span>-Store <span className="text-gray-500">Admin</span>
                 </p>
-                <div className='iconsmenu cursor-pointer bg-amber-200 md:hidden relative w-6 h-5 p-0' onClick={() => toggle(!openMenu)} ref={btnRef}>
-                    <span className={`absolute top-0 left-0 bg-white ${!openMenu ? 'hidden' : ''}`}><MenuIcon /></span>
-                    <span className={`absolute top-0 left-0 bg-white ${openMenu ? 'hidden' : ''}`}><CloseIcon /></span>
+
+                {/* Menu Icon (Mobile only) */}
+                <div
+                    ref={btnRef}
+                    onClick={() => toggle(!openMenu)}
+                    className="iconsmenu cursor-pointer bg-sky-500 text-white rounded-md p-1 md:hidden flex items-center justify-center w-9 h-9"
+                >
+                    <span className={`${openMenu ? "block" : "hidden"}`}>
+                        <MenuIcon fontSize="small" />
+                    </span>
+                    <span className={`${!openMenu ? "block" : "hidden"}`}>
+                        <CloseIcon fontSize="small" />
+                    </span>
                 </div>
             </div>
-            <div className='flex gap-3 items-center'>
-                <button className='text-slate-800 shrink-0 bg-gray-100 p-1 flex items-center justify-between rounded-full hover:text-sky-500 cursor-pointer duration-200'>
+
+            {/* Right side icons */}
+            <div className="flex gap-3 items-center">
+                <button className="relative text-gray-600 bg-gray-100 p-2 rounded-full hover:bg-sky-100 hover:text-sky-500 transition">
                     <NotificationsNoneIcon />
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
+                        3
+                    </span>
                 </button>
-                <button className='text-slate-800 shrink-0 bg-gray-100 p-1 flex items-center justify-between rounded-full hover:text-sky-500 cursor-pointer duration-200'>
+
+                <button className="text-gray-600 bg-gray-100 p-2 rounded-full hover:bg-sky-100 hover:text-sky-500 transition">
                     <PersonOutlineIcon />
                 </button>
             </div>
         </div>
-    )
+    );
+
 }
 

@@ -28,7 +28,7 @@ export const SideBar = () => {
                         !item.subRoute ? (
                             <li
                                 key={index}
-                                className="flex items-center gap-2 px-3 py-2 rounded-xl font-medium bg-gray-50 hover:bg-sky-50 hover:text-sky-600 transition-colors"
+                                className="flex items-center gap-2 mb-2 px-3 py-2 rounded-xl font-medium bg-gray-50 hover:bg-sky-50 hover:text-sky-600 transition-colors"
                             >
                                 <span className="flex items-center text-sky-500">{item.icon}</span>
                                 <Link to={`${item.path}`} className="flex-1">
@@ -39,7 +39,7 @@ export const SideBar = () => {
                             <li
                                 key={index}
                                 ref={current == index ? ele : null}
-                                style={{ height: current == index ? `${height}px` : "44px" }}
+                                style={{ height: current == index ? `${height}px` : "40px" }}
                                 className="overflow-hidden transition-all duration-200 rounded-xl"
                             >
                                 <button

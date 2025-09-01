@@ -2,44 +2,78 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 export const UsersComponent = ({ users }) => {
     return (
         <div className="w-full overflow-x-auto">
-            <table className="w-full min-w-[600px]">
-                <thead>
+            <table className="w-full min-w-[700px] border-collapse">
+                <thead className="bg-gray-50">
                     <tr>
-                        <th className="border-b border-gray-200 px-4 py-2">User</th>
-                        <th className="border-b border-gray-200 px-4 py-2">Phone</th>
-                        <th className="border-b border-gray-200 px-4 py-2">Role</th>
-                        <th className="border-b border-gray-200 px-4 py-2">View</th>
+                        <th className="border-b border-gray-200 px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                            User
+                        </th>
+                        <th className="border-b border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-700">
+                            Phone
+                        </th>
+                        <th className="border-b border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-700">
+                            Role
+                        </th>
+                        <th className="border-b border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-700">
+                            View
+                        </th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    {
-                        users[0]?.users.map((user, index) => index<5 &&(
-                            <tr className="border-b border-gray-200" key={index}>
-                                <td className="px-4 py-2 flex items-start gap-3">
-                                    <div className="overflow-hidden rounded-full shrink-0">
-                                        <img src={user.image} width={'40px'} alt="img" />
-                                    </div>
-                                    <div className="">
-                                        <h1 className="font-medium -mb-1">{user.name}</h1>
-                                        <p className="text-xs text-gray-600">{user.email}</p>
-                                    </div>
-                                </td>
-                                <td className="px-4 py-2 text-center">{user.phone}</td>
-                                <td className="px-4 py-2 text-center">
-                                    <select className="border border-gray-300 outline-0 rounded-md p-1 px-2 cursor-pointer" defaultValue={user.role}>
-                                        <option value="admin">admin</option>
-                                        <option value="customer">customer</option>
-                                        <option value="seller">seller</option>
-                                    </select>
-                                </td>
-                                <td className="px-4 py-2 text-center">
-                                    <span className='text-gray-600 cursor-pointer bg-gray-100 inline-flex rounded-md p-1'><RemoveRedEyeOutlinedIcon style={{fontSize: '18px'}}/></span>
-                                </td>
-                            </tr>
-                        ))
-                    }
+                    {users[0]?.users.map(
+                        (user, index) =>
+                            index < 5 && (
+                                <tr
+                                    key={index}
+                                    className="border-b border-gray-100 hover:bg-gray-50 transition"
+                                >
+                                    {/* User info */}
+                                    <td className="px-4 py-3 flex items-center gap-3">
+                                        <div className="overflow-hidden rounded-full shrink-0 w-10 h-10">
+                                            <img
+                                                src={user.image}
+                                                alt="user avatar"
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                        <div>
+                                            <h1 className="font-medium text-sm text-gray-800">
+                                                {user.name}
+                                            </h1>
+                                            <p className="text-xs text-gray-500">{user.email}</p>
+                                        </div>
+                                    </td>
+
+                                    {/* Phone */}
+                                    <td className="px-4 py-3 text-center text-sm text-gray-700">
+                                        {user.phone}
+                                    </td>
+
+                                    {/* Role */}
+                                    <td className="px-4 py-3 text-center">
+                                        <select
+                                            className="border border-gray-300 bg-white text-sm rounded-md p-1 px-2 cursor-pointer focus:ring-1 focus:ring-sky-400 outline-none"
+                                            defaultValue={user.role}
+                                        >
+                                            <option value="admin">Admin</option>
+                                            <option value="customer">Customer</option>
+                                            <option value="seller">Seller</option>
+                                        </select>
+                                    </td>
+
+                                    {/* View */}
+                                    <td className="px-4 py-3 text-center">
+                                        <button className="text-gray-600 hover:text-sky-500 bg-gray-100 hover:bg-gray-200 inline-flex rounded-md p-1 transition">
+                                            <RemoveRedEyeOutlinedIcon style={{ fontSize: "18px" }} />
+                                        </button>
+                                    </td>
+                                </tr>
+                            )
+                    )}
                 </tbody>
             </table>
         </div>
-    )
+    );
+
 }

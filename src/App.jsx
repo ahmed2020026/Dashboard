@@ -8,7 +8,7 @@ import { Route, Routes } from "react-router-dom"
 export const App = () => {
   return (
     <>
-      <header className="shadow-xl md:shadow bg-white fixed w-full z-10 py-3">
+      <header className="shadow-xl md:shadow bg-white fixed w-full z-10">
         <NavBar />
       </header>
       <main className="flex min-h-screen pt-21 ">
