@@ -46,8 +46,8 @@ export const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-                <div className="shadow-md bg-white p-4 rounded-md col-span-2 md:col-span-1">
-                    <h1 className="text-xl font-bold border-b pb-2 border-gray-400">Orders</h1>
+                <div className="shadow-md bg-white p-4 rounded-md col-span-2 lg:col-span-1">
+                    <h1 className="text-xl font-bold border-b pb-2 border-gray-400 w-full">Orders</h1>
                     <div className="pt-4">
                         <OrderComponent Order={Order}/>
                     </div>
