@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import React, { useEffect, useRef, useState } from 'react';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { callUser } from '../redux/callApi';
 import { useDispatch, useSelector } from 'react-redux';
+import { ShowActions } from '../component/showActions';
+import { useOutsideClick } from '../hooks/useOutSide';
+import { Link } from "react-router-dom"
 
 export const AllUsers = () => {
 
@@ -11,12 +14,23 @@ export const AllUsers = () => {
     useEffect(() => {
         if (!User || User.length == 0) Dispatch(callUser())
     }, [Dispatch, User])
-    //console.log(User[0].users)
+
+    /* select Element And Show Detail, edit , delete */
+    const catchElement = useRef();
+    const btnOfElement = useRef();
+    const [ID, setID] = useState(null);
+    const [open, setOpen] = useState(false)
+    const selectElement = (e) => {
+        setID(e);
+        setOpen(!open)
+    };
+    useOutsideClick(catchElement, btnOfElement, () => setOpen(false))
+
     return (
         <div className="p-4 rounded-lg shadow-lg bg-white">
             <div className='flex items-center justify-between border-b pb-2 border-gray-400'>
                 <h1 className="text-xl font-bold">Users</h1>
-                <button aria-label='Add User' className='bg-sky-500 rounded-md hover:bg-sky-700 transition cursor-pointer text-white flex items-center justify-center text-sm px-2 py-1'>Add User</button>
+                <Link to={'/addUser'} aria-label='Add User' className='bg-sky-500 rounded-md hover:bg-sky-700 transition cursor-pointer text-white flex items-center justify-center text-sm px-2 py-1'>Add User</Link>
             </div>
             <div className="w-full overflow-x-auto mt-4">
                 <table className="w-full border-collapse min-w-[700px] bg-white rounded-lg overflow-hidden shadow-md">
@@ -59,12 +73,13 @@ export const AllUsers = () => {
                                         <option value="seller">Seller</option>
                                     </select>
                                 </td>
-                                <td className="px-4 py-3 text-center">
-                                    <span
-                                        className="text-gray-600 cursor-pointer bg-gray-100 inline-flex rounded-md p-1 hover:bg-gray-200 transition-colors"
-                                    >
-                                        <RemoveRedEyeOutlinedIcon style={{ fontSize: '18px' }} />
+                                <td className="px-4 py-3 text-center relative">
+                                    <span onClick={() => selectElement(index)} className="text-gray-600 cursor-pointer bg-gray-100 inline-flex rounded-md p-1 hover:bg-gray-200 transition-colors" ref={index == ID ? btnOfElement : null}>
+                                        <MoreVertIcon style={{ fontSize: '18px' }} />
                                     </span>
+                                    <div className={`absolute z-3 -left-10 duration-300 top-10 ${index == ID && open ? '' : 'hidden'}`} ref={index == ID ? catchElement : null}>
+                                        <ShowActions id={index} />
+                                    </div>
                                 </td>
                             </tr>
                         ))}

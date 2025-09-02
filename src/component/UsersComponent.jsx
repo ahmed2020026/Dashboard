@@ -14,9 +14,6 @@ export const UsersComponent = ({ users }) => {
                         <th className="border-b border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-700">
                             Role
                         </th>
-                        <th className="border-b border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-700">
-                            View
-                        </th>
                     </tr>
                 </thead>
 
@@ -60,13 +57,6 @@ export const UsersComponent = ({ users }) => {
                                             <option value="customer">Customer</option>
                                             <option value="seller">Seller</option>
                                         </select>
-                                    </td>
-
-                                    {/* View */}
-                                    <td className="px-4 py-3 text-center">
-                                        <button className="text-gray-600 hover:text-sky-500 bg-gray-100 hover:bg-gray-200 inline-flex rounded-md p-1 transition">
-                                            <RemoveRedEyeOutlinedIcon style={{ fontSize: "18px" }} />
-                                        </button>
                                     </td>
                                 </tr>
                             )

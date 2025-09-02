@@ -1,87 +1,84 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import Phone from '@mui/icons-material/Phone';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import GavelIcon from '@mui/icons-material/Gavel';
+import { useDispatch, useSelector } from "react-redux";
+import { callUser } from "../redux/callApi";
+import { useParams } from "react-router-dom";
+import { FieldInput } from "../component/FieldInput";
+import { InputFile } from "../component/InputFile";
 
 export const AddUsers = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        department: '',
-        role: '',
-        status: 'active'
-    });
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [role, setRole] = useState('')
+    const [image, setImage] = useState(null)
+
+    const User = useSelector(state => state.users.users)
+    const Dispatch = useDispatch();
+    useEffect(() => {
+        if (!User || User.length == 0) Dispatch(callUser())
+    }, [Dispatch, User])
+
+    const { id } = useParams()
+    useEffect(() => {
+        if (id) {
+            setName(User[0]?.users[id].name)
+            setEmail(User[0]?.users[id].email)
+            setPhone(User[0]?.users[id].phone)
+            setRole(User[0]?.users[id].role)
+            setImage(User[0]?.users[id].image || '')
+        } else {
+            setName('')
+            setEmail('')
+            setPhone('')
+            setRole('')
+            setImage('')
+        }
+    }, [id, User]);
 
     return (
         <div className="flex items-center justify-center p-4">
             <form className="bg-white shadow-lg rounded-xl p-6 md:p-8 w-full max-w-md">
                 <div className="text-center mb-6">
                     <h1 className="text-2xl font-bold text-gray-800">
-                        Add New User
+                        {id ? 'Update User' : 'Add New User'}
                     </h1>
-                    <p className="text-gray-400 text-sm mt-0 capitalize">Fill This Form to add new User</p>
+                    <p className="text-gray-400 text-sm mt-0 capitalize">{id ? 'Fill This Form to Edit User' : 'Fill This Form to add new User'}</p>
                 </div>
-
                 <div className="space-y-4">
+                    <InputFile
+                        image={image}
+                        onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
+                    />
                     {/* حقل الاسم */}
-                    <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                        <div className="relative">
-                            <div className="absolute inset-y-0 left-2 flex items-center text-gray-700 pr-3 pointer-events-none">
-                                <PersonIcon style={{ fontSize: '18px' }} />
-                            </div>
-                            <input
-                                type="text"
-                                id="name"
-                                autoComplete="off"
-                                name="name"
-                                placeholder="e. Ahmed"
-                                className="w-full border-2 outline-0 border-gray-300 focus:border-blue-500 py-2 px-4 pl-8 text-sm rounded-lg"
-                                required
-                            />
-                        </div>
-                    </div>
+                    <FieldInput
+                        icon={<PersonIcon style={{ fontSize: '18px' }} />}
+                        label='name' value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder='eg.Ahmed'
+                    />
 
                     {/* حقل البريد الإلكتروني */}
-                    <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                        <div className="relative">
-                            <div className="absolute inset-y-0 left-2 flex items-center text-gray-700 pr-3 pointer-events-none">
-                                <EmailIcon style={{ fontSize: '18px' }} />
-                            </div>
-                            <input
-                                type="email"
-                                autoComplete="off"
-                                id="email"
-                                name="email"
-                                placeholder="example@company.com"
-                                className="w-full border-2 outline-0 border-gray-300 focus:border-blue-500 py-2 px-4 pl-8 text-sm rounded-lg"
-                                required
-                            />
-                        </div>
-                    </div>
+                    <FieldInput
+                        icon={<EmailIcon style={{ fontSize: '18px' }} />}
+                        label='email' value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder='eg.example@gmail.com'
+                    />
 
                     {/* حقل الهاتف */}
-                    <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                        <div className="relative">
-                            <div className="absolute inset-y-0 left-2 flex items-center text-gray-700 pr-3 pointer-events-none">
-                                <Phone style={{ fontSize: '18px' }} />
-                            </div>
-                            <input
-                                autoComplete="off"
-                                type="tel"
-                                id="phone"
-                                name="phone"
-                                placeholder="05XXXXXXXX"
-                                className="w-full border-2 outline-0 border-gray-300 focus:border-blue-500 py-2 px-4 pl-8 text-sm rounded-lg"
-                                required
-                            />
-                        </div>
-                    </div>
+                    <FieldInput
+                        icon={<Phone style={{ fontSize: '18px' }} />}
+                        label='phone'
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder='eg.0125xxxx'
+                    />
+
 
                     {/* حقل القسم */}
                     <div>
@@ -89,11 +86,13 @@ export const AddUsers = () => {
                         <div className="relative">
                             <select
                                 id="department"
-                                name="department"
+                                name="role"
                                 className="w-full border-2 outline-0 border-gray-300 focus:border-blue-500 py-2 px-4 pr-10 text-sm rounded-lg appearance-none"
                                 required
+                                value={role}
+                                onChange={(e) => setRole(e.target.value)}
                             >
-                                <option value="" disabled selected>
+                                <option value="" disabled>
                                     Select role
                                 </option>
                                 <option value="admin">Admin</option>
@@ -119,7 +118,7 @@ export const AddUsers = () => {
                         type="submit"
                         className="px-4 py-2 cursor-pointer bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200 flex items-center"
                     >
-                        Add
+                        {id ? 'Update' : 'Add'}
                     </button>
                 </div>
             </form>

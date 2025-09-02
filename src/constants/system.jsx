@@ -35,9 +35,6 @@ export const routesLinks = [
             }, {
                 linkTxt: 'Add User',
                 path: '/addUser'
-            }, {
-                linkTxt: 'Edite User',
-                path: '/editeUser'
             }
         ]
     },{
@@ -49,7 +46,7 @@ export const routesLinks = [
                 path: '/allOrders'
             }, {
                 linkTxt: 'Manage Orders',
-                path: '/addUser'
+                path: '/manageOrders'
             }
         ]
     },{

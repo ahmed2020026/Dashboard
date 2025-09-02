@@ -17,5 +17,5 @@ export const openSubMenu = () => {
         }
     }, [current]);
 
-    return { current, ele, height, toggle }
+    return { current, ele, height, toggle}
 }
