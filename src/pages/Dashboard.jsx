@@ -49,7 +49,7 @@ export const Dashboard = () => {
                 <div className="shadow-md bg-white p-4 rounded-md col-span-2 lg:col-span-1">
                     <h1 className="text-xl font-bold border-b pb-2 border-gray-400 w-full">Orders</h1>
                     <div className="pt-4">
-                        <OrderComponent Order={Order}/>
+                        <OrderComponent Order={Order} />
                     </div>
                 </div>
             </div>

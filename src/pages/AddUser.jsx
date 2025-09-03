@@ -3,7 +3,6 @@ import PersonIcon from '@mui/icons-material/Person';
 import EmailIcon from '@mui/icons-material/Email';
 import Phone from '@mui/icons-material/Phone';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import GavelIcon from '@mui/icons-material/Gavel';
 import { useDispatch, useSelector } from "react-redux";
 import { callUser } from "../redux/callApi";
 import { useParams } from "react-router-dom";
@@ -22,7 +21,6 @@ export const AddUsers = () => {
     useEffect(() => {
         if (!User || User.length == 0) Dispatch(callUser())
     }, [Dispatch, User])
-
     const { id } = useParams()
     useEffect(() => {
         if (id) {
@@ -45,13 +43,13 @@ export const AddUsers = () => {
             <form className="bg-white shadow-lg rounded-xl p-6 md:p-8 w-full max-w-md">
                 <div className="text-center mb-6">
                     <h1 className="text-2xl font-bold text-gray-800">
-                        {id ? 'Update User' : 'Add New User'}
+                        {id ? 'Edite User' : 'Add New User'}
                     </h1>
                     <p className="text-gray-400 text-sm mt-0 capitalize">{id ? 'Fill This Form to Edit User' : 'Fill This Form to add new User'}</p>
                 </div>
                 <div className="space-y-4">
                     <InputFile
-                        image={image}
+                        image={image || '/profile.png'}
                         onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
                     />
                     {/* حقل الاسم */}
@@ -92,7 +90,7 @@ export const AddUsers = () => {
                                 value={role}
                                 onChange={(e) => setRole(e.target.value)}
                             >
-                                <option value="" disabled>
+                                <option value="" selected disabled>
                                     Select role
                                 </option>
                                 <option value="admin">Admin</option>

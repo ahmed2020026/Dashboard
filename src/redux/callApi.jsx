@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 

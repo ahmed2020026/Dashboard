@@ -3,3 +3,11 @@
 body {
     font-family: 'Roboto', sans-serif;
 }
+
+input:checked+label .dot {
+    @apply left-[55%]
+}
+
+input:checked+label {
+    @apply bg-sky-500
+}

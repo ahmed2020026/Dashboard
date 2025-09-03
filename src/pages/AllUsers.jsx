@@ -77,8 +77,8 @@ export const AllUsers = () => {
                                     <span onClick={() => selectElement(index)} className="text-gray-600 cursor-pointer bg-gray-100 inline-flex rounded-md p-1 hover:bg-gray-200 transition-colors" ref={index == ID ? btnOfElement : null}>
                                         <MoreVertIcon style={{ fontSize: '18px' }} />
                                     </span>
-                                    <div className={`absolute z-3 -left-10 duration-300 top-10 ${index == ID && open ? '' : 'hidden'}`} ref={index == ID ? catchElement : null}>
-                                        <ShowActions id={index} />
+                                    <div className={`absolute -left-10 duration-300 bottom-0 ${index == ID && open ? '' : 'hidden'}`} ref={index == ID ? catchElement : null}>
+                                        <ShowActions id={index} pathDetails={'detailsUser'} pathEdite={'editeUser'} />
                                     </div>
                                 </td>
                             </tr>

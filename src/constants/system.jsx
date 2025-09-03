@@ -19,10 +19,7 @@ export const routesLinks = [
                 path: '/allProducts'
             },{
                 linkTxt: 'Add Product',
-                path: '/addProducts'
-            },{
-                linkTxt: 'Edite Product',
-                path: '/editeProducts'
+                path: '/addProduct'
             }
         ]
     },{
@@ -42,9 +39,6 @@ export const routesLinks = [
         icon: <ViewListIcon style={{fontSize: '19px'}} />,
         subRoute: [
             {
-                linkTxt: 'All Orders',
-                path: '/allOrders'
-            }, {
                 linkTxt: 'Manage Orders',
                 path: '/manageOrders'
             }
