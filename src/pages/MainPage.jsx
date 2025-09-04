@@ -7,6 +7,7 @@ import { AddUsers } from "./AddUser"
 import { NotFound } from "./404"
 import { AddProduct } from "./AddProduct"
 import { Settings } from "./Settings"
+import { Reviews } from "./Reviews"
 
 export const MainPage = () => {
     return (
@@ -20,6 +21,8 @@ export const MainPage = () => {
                 <Route path='/allUsers' element={<AllUsers />} />
                 <Route path='/addUser' element={<AddUsers />} />
                 <Route path='/editeUser/:id' element={<AddUsers />} />
+                <Route path='/manageOrders' element={<AllOrders />} />
+                <Route path='/reviews' element={<Reviews />} />
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/*' element={<NotFound />} />
             </Routes>

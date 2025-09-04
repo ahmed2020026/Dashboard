@@ -14,7 +14,6 @@ export const AllProducts = () => {
         if (products.length == 0) dispatch(callProduct())
     }, [dispatch, products])
 
-    console.log(products)
     /* select Element And Show Detail, edit , delete */
     const catchElement = useRef();
     const btnOfElement = useRef();

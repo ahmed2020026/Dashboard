@@ -6,16 +6,16 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 
 export const Settings = () => {
-    const [name, setName] = useState('')
-    const [company, setCompany] = useState('')
+    const [name, setName] = useState('Ahmed Samir Mustafa')
+    const [company, setCompany] = useState('G-Store')
     const [image, setImage] = useState(null)
-    const [lang, setLang] = useState(null)
+    const [lang, setLang] = useState('')
     const [bgColor, setBgColor] = useState('#ffffff')
     const [hoverColor, setHoverColor] = useState('#0084d1')
     const [primaryColor, setPrimaryColor] = useState('#f3f4f6')
     const [txtColor, setTxtColor] = useState('#666666')
-    const [timeZone , setTimeZone] = useState('')
-    const [currency , setCurrency] = useState('')
+    const [timeZone, setTimeZone] = useState('')
+    const [currency, setCurrency] = useState('')
 
     return (
         <div>
@@ -41,19 +41,33 @@ export const Settings = () => {
                     />
                 </div>
                 <div className="border-b border-gray-300 pb-5">
-                    <label className="block text-sm font-medium text-gray-800 -mb-1">logo</label>
-                    <div className={`relative flex items-center justify-start rounded-md w-64`}>
-                        <input
-                            type="file"
-                            className="block w-full h-full text-sm cursor-pointer absolute border opacity-0"
-                            id='image'
-                            name='image'
-                            onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
-                        />
-                        <div className={`text-center flex justify-start items-center gap-3`}>
-                            <img src={image || '/image.png'} alt="user" style={{ maxWidth: '60px' }} className={`shrink-0`} />
-                            <p className="text-sm p-1 px-3 rounded text-gray-500">Browse..</p>
+                    <div className="flex items-center gap-4">
+                        {/* Preview Image */}
+                        <div className="w-16 h-16  overflow-hidden">
+                            <img
+                                src={image || "/image.png"}
+                                alt="user"
+                                className="w-full h-full object-cover"
+                            />
                         </div>
+
+                        {/* Upload Button */}
+                        <label
+                            htmlFor="image"
+                            className="cursor-pointer px-3 py-1.5 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition"
+                        >
+                            Upload Image
+                        </label>
+
+                        <input
+                            id="image"
+                            type="file"
+                            accept="image/*"
+                            className="hidden"
+                            onChange={(e) =>
+                                setImage(URL.createObjectURL(e.target.files[0]))
+                            }
+                        />
                     </div>
                 </div>
                 <div className="space-y-4 md:grid md:grid-cols-2 gap-5">
@@ -86,7 +100,7 @@ export const Settings = () => {
                                     value={lang}
                                     onChange={(e) => setLang(e.target.value)}
                                 >
-                                    <option disabled selected>
+                                    <option disabled value=''>
                                         Select language
                                     </option>
                                     <option value="admin">English</option>
@@ -108,7 +122,7 @@ export const Settings = () => {
                             <input type="color" value={hoverColor} onChange={(e) => setHoverColor(e.target.value)} name="Hover" id="Hover" className="rounded-full cursor-pointer bg-white" />
                         </div>
                         <div className="flex items-center justify-between">
-                            <label htmlFor="HoverColor" className="text-sm font-medium text-gray-800">Background Color</label>
+                            <label htmlFor="backGround" className="text-sm font-medium text-gray-800">Background Color</label>
                             <input type="color" value={bgColor} onChange={(e) => setBgColor(e.target.value)} name="backGround" id="backGround" className="rounded-full cursor-pointer bg-white" />
                         </div>
                         <div className="flex items-center justify-between">
@@ -129,7 +143,7 @@ export const Settings = () => {
                                     value={timeZone}
                                     onChange={(e) => setTimeZone(e.target.value)}
                                 >
-                                    <option value="" disabled selected>
+                                    <option value="" disabled>
                                         Select time zone
                                     </option>
                                     <option value="UTC+2">UTC+2</option>
@@ -152,7 +166,7 @@ export const Settings = () => {
                                     value={currency}
                                     onChange={(e) => setCurrency(e.target.value)}
                                 >
-                                    <option value="" disabled selected>
+                                    <option value="" disabled>
                                         Default Currency
                                     </option>
                                     <option value="EGY">EGY</option>
