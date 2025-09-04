@@ -38,9 +38,10 @@ export const AddUsers = () => {
         }
     }, [id, User]);
 
+    const submit = (e) => e.preventDefault();
     return (
         <div className="flex items-center justify-center p-4">
-            <form className="bg-white shadow-lg rounded-xl p-6 md:p-8 w-full max-w-md">
+            <form onSubmit={submit} className="bg-white shadow-lg rounded-xl p-6 md:p-8 w-full max-w-md">
                 <div className="text-center mb-6">
                     <h1 className="text-2xl font-bold text-gray-800">
                         {id ? 'Edite User' : 'Add New User'}

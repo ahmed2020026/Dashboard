@@ -8,7 +8,7 @@ import LogoDevIcon from '@mui/icons-material/LogoDev';
 import { InputFile } from '../component/InputFile';
 import { useDispatch, useSelector } from 'react-redux';
 import { callProduct } from '../redux/callApi';
-/* label, value , onChange, icon, placeholder  */
+
 export const AddProduct = () => {
     const { id } = useParams();
     const [name, setName] = useState('')
@@ -47,6 +47,9 @@ export const AddProduct = () => {
             setBrand('')
         }
     }, [id, products]);
+
+    const submit = (e) => e.preventDefault();
+
     return (
         <div className='w-full bg-white shadow-lg rounded-lg p-5'>
             <div className="text-center mb-6 py-4">
@@ -55,7 +58,7 @@ export const AddProduct = () => {
                 </h1>
                 <p className="text-gray-400 text-sm mt-0 capitalize">{id ? 'Fill This Form to Edit Product' : 'Fill This Form to add new Product'}</p>
             </div>
-            <form className='space-y-4'>
+            <form className='space-y-4' onSubmit={submit}>
                 <div className='md:grid md:grid-cols-3 gap-5 space-y-10'>
                     <div className='flex items-center justify-center'>
                         <InputFile image={image || '/add-product.png'}
