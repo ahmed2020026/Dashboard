@@ -35,9 +35,9 @@ export const UsersComponent = ({ users }) => {
                                             />
                                         </div>
                                         <div>
-                                            <h1 className="font-medium text-sm text-gray-800">
+                                            <h3 className="font-medium text-sm text-gray-800">
                                                 {user.name}
-                                            </h1>
+                                            </h3>
                                             <p className="text-xs text-gray-500">{user.email}</p>
                                         </div>
                                     </td>
@@ -52,6 +52,7 @@ export const UsersComponent = ({ users }) => {
                                         <select
                                             className="border border-gray-300 bg-white text-sm rounded-md p-1 px-2 cursor-pointer focus:ring-1 focus:ring-sky-400 outline-none"
                                             defaultValue={user.role}
+                                            aria-label='role'
                                         >
                                             <option value="admin">Admin</option>
                                             <option value="customer">Customer</option>

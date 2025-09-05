@@ -58,9 +58,9 @@ export const AllOrders = () => {
                             <td className="px-4 py-3 text-center">{order.totalPrice}$</td>
 
                             <td className="px-4 py-3 text-center relative">
-                                <span onClick={() => selectElement(index)} className="text-gray-600 cursor-pointer bg-gray-100 inline-flex rounded-md p-1 hover:bg-gray-200 transition-colors" ref={index == ID ? btnOfElement : null}>
+                                <button aria-label="actions" onClick={() => selectElement(index)} className="text-gray-600 cursor-pointer bg-gray-100 inline-flex rounded-md p-1 hover:bg-gray-200 transition-colors" ref={index == ID ? btnOfElement : null}>
                                     <MoreVertIcon style={{ fontSize: '18px' }} />
-                                </span>
+                                </button>
                                 <div className={`absolute left-0 bg-white rounded-md duration-300 bottom-0 shadow-md border border-b-0 border-gray-100 ${index == ID && open ? '' : 'hidden'}`} ref={index == ID ? catchElement : null}>
                                     <button className={`block px-2 py-1 mb-1 text-sm text-green-500  ${order.status == 'canceled' || order.status == 'delivered' ? 'cursor-not-allowed' : 'cursor-pointer hover:bg-gray-100'}  rounded-t-md w-full`} disabled={order.status == 'canceled' || order.status == 'delivered'}>Complete</button>
                                     <button className={`block px-2 py-1 text-sm text-red-500  ${order.status == 'canceled' || order.status == 'delivered' ? 'cursor-not-allowed' : 'cursor-pointer hover:bg-gray-100'}  rounded-b-md w-full`} disabled={order.status == 'canceled' || order.status == 'delivered'}>Reject</button>

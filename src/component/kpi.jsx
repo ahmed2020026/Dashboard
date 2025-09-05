@@ -8,7 +8,7 @@ export const Kpi = ({ total, icon, title, bgColor }) => {
         >
             <div>
                 <p className="mb-1 text-gray-200 text-sm tracking-wide">{title}</p>
-                <h1 className="font-semibold text-3xl">{total}</h1>
+                <h3 className="font-semibold text-3xl">{total}</h3>
             </div>
 
             <span className="bg-white/20 p-3 inline-flex rounded-xl">

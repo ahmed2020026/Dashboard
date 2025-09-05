@@ -58,7 +58,7 @@ export const AllUsers = () => {
                                         <img src={user.image} width="40" height="40" alt={user.name} className="rounded-full" />
                                     </div>
                                     <div className='text-left'>
-                                        <h1 className="font-medium -mb-1">{user.name}</h1>
+                                        <h3 className="font-medium -mb-1">{user.name}</h3>
                                         <p className="text-xs text-gray-600">{user.email}</p>
                                     </div>
                                 </td>
@@ -67,6 +67,7 @@ export const AllUsers = () => {
                                     <select
                                         className="border border-gray-300 bg-white text-sm rounded-md p-1 px-2 cursor-pointer focus:ring-1 focus:ring-sky-400 outline-none"
                                         defaultValue={user.role}
+                                        aria-label='role'
                                     >
                                         <option value="admin">Admin</option>
                                         <option value="customer">Customer</option>
@@ -74,9 +75,9 @@ export const AllUsers = () => {
                                     </select>
                                 </td>
                                 <td className="px-4 py-3 text-center relative">
-                                    <span onClick={() => selectElement(index)} className="text-gray-600 cursor-pointer bg-gray-100 inline-flex rounded-md p-1 hover:bg-gray-200 transition-colors" ref={index == ID ? btnOfElement : null}>
+                                    <button aria-label='actions' onClick={() => selectElement(index)} className="text-gray-600 cursor-pointer bg-gray-100 inline-flex rounded-md p-1 hover:bg-gray-200 transition-colors" ref={index == ID ? btnOfElement : null}>
                                         <MoreVertIcon style={{ fontSize: '18px' }} />
-                                    </span>
+                                    </button>
                                     <div className={`absolute -left-10 duration-300 bottom-0 ${index == ID && open ? '' : 'hidden'}`} ref={index == ID ? catchElement : null}>
                                         <ShowActions id={index} pathDetails={'detailsUser'} pathEdite={'editeUser'} />
                                     </div>

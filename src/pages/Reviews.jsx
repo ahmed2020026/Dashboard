@@ -12,7 +12,7 @@ export const Reviews = () => {
     return (
         <div className="">
             <div className="border-b border-gray-200 pb-5">
-                <h1 className="mb-5 font-bold text-xl relative before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-12 before:h-[2px] before:bg-blue-500">Review for Products</h1>
+                <h2 className="mb-5 font-bold text-xl relative before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-12 before:h-[2px] before:bg-blue-500">Review for Products</h2>
                 <div>
                     {
                         Reviews['reviews-for-products']?.map((review , index) => (
@@ -22,7 +22,7 @@ export const Reviews = () => {
                 </div>
             </div>
             <div className="mt-10">
-                <h1 className="mb-5 font-bold text-xl relative before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-12 before:h-[2px] before:bg-blue-500">Review for Services</h1>
+                <h2 className="mb-5 font-bold text-xl relative before:content-[''] before:absolute before:-bottom-1 before:left-0 before:w-12 before:h-[2px] before:bg-blue-500">Review for Services</h2>
                 <div>
                     {
                         Reviews['reviews-for-website']?.map((review, index) => (

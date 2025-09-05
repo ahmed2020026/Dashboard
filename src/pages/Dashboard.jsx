@@ -40,14 +40,14 @@ export const Dashboard = () => {
                         <Chart data={['Total Users', 'Total Products', 'Total Orders', 'Total Sales']} value={[28, 60, 38, 100]} />
                     </div>
                     <div className="mt-3 p-4 shadow-md bg-white rounded-md">
-                        <h1 className="text-xl font-bold border-b pb-2 border-gray-300">Users</h1>
+                        <h2 className="text-xl font-bold border-b pb-2 border-gray-300">Users</h2>
                         <div className="mt-4">
                             <UsersComponent users={User} />
                         </div>
                     </div>
                 </div>
                 <div className="shadow-md bg-white p-4 rounded-md col-span-2 lg:col-span-1">
-                    <h1 className="text-xl font-bold border-b pb-2 border-gray-400 w-full">Orders</h1>
+                    <h2 className="text-xl font-bold border-b pb-2 border-gray-400 w-full">Orders</h2>
                     <div className="pt-4">
                         <OrderComponent Order={Order} />
                     </div>

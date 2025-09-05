@@ -33,7 +33,7 @@ export const NavBar = () => {
                 </p>
 
                 {/* Menu Icon (Mobile only) */}
-                <div
+                <button aria-label='btn-toggle-menu'
                     ref={btnRef}
                     onClick={() => toggle(!openMenu)}
                     className="iconsmenu cursor-pointer bg-sky-500 text-white rounded-md p-1 md:hidden flex items-center justify-center w-9 h-9"
@@ -44,13 +44,13 @@ export const NavBar = () => {
                     <span className={`${!openMenu ? "block" : "hidden"}`}>
                         <CloseIcon fontSize="small" />
                     </span>
-                </div>
+                </button>
             </div>
 
             {/* Right side icons */}
             <div className="flex gap-3 items-center">
                 <div className='relative'>
-                    <button className="relative text-gray-600 cursor-pointer bg-gray-100 p-2 rounded-full hover:bg-sky-100 hover:text-sky-500 transition" onClick={() => toggleOpen(setOpenNotifications, !openNotifications)} ref={btnNot}>
+                    <button aria-label='notifications' className="relative text-gray-600 cursor-pointer bg-gray-100 p-2 rounded-full hover:bg-sky-100 hover:text-sky-500 transition" onClick={() => toggleOpen(setOpenNotifications, !openNotifications)} ref={btnNot}>
                         <NotificationsNoneIcon />
                         <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-4 h-4 flex items-center justify-center rounded-full">
                             3
@@ -62,7 +62,7 @@ export const NavBar = () => {
                 </div>
 
                 <div className='relative'>
-                    <button className="text-gray-600 bg-gray-100 p-2 cursor-pointer rounded-full hover:bg-sky-100 hover:text-sky-500 transition" onClick={() => toggleOpen(setOpenPerson, !openPerson)} ref={btnPerson}>
+                    <button aria-label='person' className="text-gray-600 bg-gray-100 p-2 cursor-pointer rounded-full hover:bg-sky-100 hover:text-sky-500 transition" onClick={() => toggleOpen(setOpenPerson, !openPerson)} ref={btnPerson}>
                         <PersonOutlineIcon />
                     </button>
                     <div className={`absolute w-[120px] duration-300 right-0 top-[calc(100%+25px)] ${openPerson ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}`} ref={refPerson}>

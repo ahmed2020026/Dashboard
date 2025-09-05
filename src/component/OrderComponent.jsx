@@ -11,7 +11,7 @@ export const OrderComponent = ({ Order }) => {
             >
                 {/* Left side */}
                 <div>
-                    <h1 className="font-semibold text-lg text-gray-800">{order.customerName}</h1>
+                    <h3 className="font-semibold text-lg text-gray-800">{order.customerName}</h3>
                     <p className="text-sm text-gray-500">{order.shippingAddress}</p>
                     <p className="mt-2 inline-block bg-sky-50 text-sky-600 text-sm font-medium px-3 py-1 rounded-md border border-sky-500">
                         {`${order.totalPrice}$`}

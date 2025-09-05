@@ -57,7 +57,7 @@ export const AllProducts = () => {
                                         <img src={product.image} width="40" height="40" alt={'pro'} className="rounded-full" />
                                     </div>
                                     <div className='text-left  overflow-hidden text-ellipsis'>
-                                        <h1 className="font-medium text-gray-900 truncate line-clamp-2">{product.title}</h1>
+                                        <h3 className="font-medium text-gray-900 truncate line-clamp-2">{product.title}</h3>
                                         <p className="text-xs text-gray-600">{product.category}</p>
                                     </div>
                                 </td>
@@ -66,9 +66,9 @@ export const AllProducts = () => {
                                 <td className="px-4 py-3 text-center text-red-500">{product.discount || 0}%</td>
                                 
                                 <td className="px-4 py-3 text-center relative">
-                                    <span onClick={() => selectElement(index)} className="text-gray-600 cursor-pointer bg-gray-100 inline-flex rounded-md p-1 hover:bg-gray-200 transition-colors" ref={index == ID ? btnOfElement : null}>
+                                    <button aria-label="actions" onClick={() => selectElement(index)} className="text-gray-600 cursor-pointer bg-gray-100 inline-flex rounded-md p-1 hover:bg-gray-200 transition-colors" ref={index == ID ? btnOfElement : null}>
                                         <MoreVertIcon style={{ fontSize: '18px' }} />
-                                    </span>
+                                    </button>
                                     <div className={`absolute left-10 duration-300 bottom-0 ${index == ID && open ? '' : 'hidden'}`} ref={index == ID ? catchElement : null}>
                                         <ShowActions id={index} pathDetails={'detailsProduct'} pathEdite={'editeProduct'} />
                                     </div>

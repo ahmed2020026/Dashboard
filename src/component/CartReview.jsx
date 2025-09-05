@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { callReview } from "../redux/callApi";
 import StarRateIcon from '@mui/icons-material/StarRate';
-export const CartReview = ({avater,name,date,rate,review}) => {
+export const CartReview = ({ avater, name, date, rate, review }) => {
 
     return (
         <div>
