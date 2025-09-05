@@ -43,6 +43,7 @@ export const SideBar = () => {
                                 className="overflow-hidden transition-all duration-200 rounded-xl"
                             >
                                 <button
+                                    aria-label='list-menu'
                                     onClick={(e) => toggle(index)}
                                     className="flex items-center gap-2 w-full px-3 py-2 rounded-xl bg-gray-50 hover:bg-sky-50 hover:text-sky-600 transition-colors relative"
                                 >

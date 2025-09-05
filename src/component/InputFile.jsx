@@ -10,6 +10,7 @@ export const InputFile = React.memo(({ onChange, image, h,w , r , x}) => {
                     id='image'
                     name='image'
                     onChange={onChange}
+                    aria-label='image-upload'
                 />
                 <div className={`text-center flex ${x ?'justify-start': 'justify-center'}`}>
                     <img src={image} alt="user" style={{maxWidth:`${w-10}px` || '80px'}} className={`${r?'rounded-md':'rounded-full'} shrink-0`} />

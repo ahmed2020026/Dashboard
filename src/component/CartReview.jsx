@@ -1,5 +1,3 @@
-import { useDispatch, useSelector } from "react-redux"
-import { callReview } from "../redux/callApi";
 import StarRateIcon from '@mui/icons-material/StarRate';
 export const CartReview = ({ avater, name, date, rate, review }) => {
 
@@ -12,7 +10,7 @@ export const CartReview = ({ avater, name, date, rate, review }) => {
                         <img src={avater} alt={name} className="rounded-full" />
                     </div>
                     <div>
-                        <h2 className="font-semibold">{name}</h2>
+                        <h3 className="font-semibold">{name}</h3>
                         <p className="text-sm text-gray-500">{date}</p>
                     </div>
                 </div>
