@@ -13,12 +13,7 @@ const productSlice = createSlice({
         error: null,
     },
     reducers: {
-        deleteUser: (state, action) => {
-            // action.payload = id
-            state.users[0].users = state.users[0].users.filter(
-                (user) => user.id !== action.payload
-            );
-        },
+
     },
     extraReducers: (builder) => {
         /* pending */

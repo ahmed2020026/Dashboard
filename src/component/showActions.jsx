@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
-export const ShowActions = ({id , pathDetails , pathEdite}) => {
+export const ShowActions = ({ id, pathDetails, pathEdite }) => {
+
     return (
         <div className="border border-gray-200 p-1 rounded-lg bg-white shadow-lg">
             <Link to={`/${pathDetails}`} className="block text-gray-500 text-center text-sm px-3 py-0.5 mb-1">details</Link>

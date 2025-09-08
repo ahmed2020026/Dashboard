@@ -9,7 +9,6 @@ import { Link } from "react-router-dom"
 export const AllUsers = () => {
     const User = useSelector(state => state.users.users);
     const Dispatch = useDispatch();
-
     useEffect(() => {
         if (!User || User.length === 0) Dispatch(callUser())
     }, [Dispatch, User]);
@@ -30,32 +29,13 @@ export const AllUsers = () => {
     useOutsideClick(catchElement, btnOfElement, () => setOpen(false));
 
     // فلترة المستخدمين حسب البحث
-    const filteredUsers = User[0]?.users.filter((user) =>
-        user.name.toLowerCase().includes(search.toLowerCase())
-    ) || [];
+    
 
     return (
         <div className="p-4 rounded-lg shadow-lg bg-white">
             <div className='flex items-center justify-between border-b pb-2 border-gray-400'>
                 <h1 className="text-xl font-bold">Users</h1>
                 <Link to={'/addUser'} aria-label='Add User' className='bg-sky-500 rounded-md hover:bg-sky-700 transition cursor-pointer text-white flex items-center justify-center text-sm px-2 py-1'>Add User</Link>
-            </div>
-
-            {/* search */}
-            <div className='flex gap-2 items-center my-3'>
-                <input
-                    type="text"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    className='w-full border-2 border-gray-300 p-1 py-1.5 rounded-md outline-0 focus:border-sky-500 text-sm'
-                    placeholder='search by name of user'
-                />
-                <button
-                    onClick={() => setSearch("")}
-                    className='bg-sky-500 text-white px-2 rounded-md hover:bg-sky-700 transition cursor-pointer flex items-center justify-center text-sm py-2'
-                >
-                    Clear
-                </button>
             </div>
 
             <div className="w-full overflow-x-auto mt-4">
