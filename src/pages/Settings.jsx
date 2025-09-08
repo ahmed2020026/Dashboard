@@ -180,16 +180,16 @@ export const Settings = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex justify-start gap-3 mt-8">
+                <div className="flex justify-start gap-3 mt-8 items-center">
                     <button
                         type="button"
-                        className="px-4 py-2 cursor-pointer bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition duration-200"
+                        className="px-4 py-1 cursor-pointer bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition duration-200"
                     >
                         Cancel
                     </button>
                     <button
                         type="submit"
-                        className="px-4 py-2 cursor-pointer bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200 flex items-center"
+                        className="px-4 py-1 cursor-pointer bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200 flex items-center"
                     >
                         Save Changes
                     </button>

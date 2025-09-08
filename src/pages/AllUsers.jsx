@@ -7,24 +7,32 @@ import { useOutsideClick } from '../hooks/useOutSide';
 import { Link } from "react-router-dom"
 
 export const AllUsers = () => {
-
-    const User = useSelector(state => state.users.users)
-
+    const User = useSelector(state => state.users.users);
     const Dispatch = useDispatch();
+
     useEffect(() => {
-        if (!User || User.length == 0) Dispatch(callUser())
-    }, [Dispatch, User])
+        if (!User || User.length === 0) Dispatch(callUser())
+    }, [Dispatch, User]);
+
+    /* search state */
+    const [search, setSearch] = useState("");
 
     /* select Element And Show Detail, edit , delete */
     const catchElement = useRef();
     const btnOfElement = useRef();
     const [ID, setID] = useState(null);
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
+
     const selectElement = (e) => {
         setID(e);
-        setOpen(!open)
+        setOpen(!open);
     };
-    useOutsideClick(catchElement, btnOfElement, () => setOpen(false))
+    useOutsideClick(catchElement, btnOfElement, () => setOpen(false));
+
+    // فلترة المستخدمين حسب البحث
+    const filteredUsers = User[0]?.users.filter((user) =>
+        user.name.toLowerCase().includes(search.toLowerCase())
+    ) || [];
 
     return (
         <div className="p-4 rounded-lg shadow-lg bg-white">
@@ -32,10 +40,31 @@ export const AllUsers = () => {
                 <h1 className="text-xl font-bold">Users</h1>
                 <Link to={'/addUser'} aria-label='Add User' className='bg-sky-500 rounded-md hover:bg-sky-700 transition cursor-pointer text-white flex items-center justify-center text-sm px-2 py-1'>Add User</Link>
             </div>
+
+            {/* search */}
+            <div className='flex gap-2 items-center my-3'>
+                <input
+                    type="text"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className='w-full border-2 border-gray-300 p-1 py-1.5 rounded-md outline-0 focus:border-sky-500 text-sm'
+                    placeholder='search by name of user'
+                />
+                <button
+                    onClick={() => setSearch("")}
+                    className='bg-sky-500 text-white px-2 rounded-md hover:bg-sky-700 transition cursor-pointer flex items-center justify-center text-sm py-2'
+                >
+                    Clear
+                </button>
+            </div>
+
             <div className="w-full overflow-x-auto mt-4">
                 <table className="w-full border-collapse min-w-[700px] bg-white rounded-lg overflow-hidden shadow-md">
                     <thead>
                         <tr>
+                            <th className="border-b border-gray-200 px-4 py-3 text-left text-sm font-semibold text-gray-700">
+                                ID
+                            </th>
                             <th className="border-b border-gray-200 px-4 py-3 text-left text-sm font-semibold text-gray-700">
                                 User
                             </th>
@@ -51,8 +80,9 @@ export const AllUsers = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {User[0]?.users.map((user, index) => (
+                        {filteredUsers.map((user, index) => (
                             <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                                <td className="px-4 py-3 text-left">{user.id}</td>
                                 <td className="px-4 py-3 flex items-start gap-3 text-right">
                                     <div className="overflow-hidden rounded-full shrink-0">
                                         <img src={user.image} width="40" height="40" alt={user.name} className="rounded-full" />
@@ -75,10 +105,18 @@ export const AllUsers = () => {
                                     </select>
                                 </td>
                                 <td className="px-4 py-3 text-center relative">
-                                    <button aria-label='actions' onClick={() => selectElement(index)} className="text-gray-600 cursor-pointer bg-gray-100 inline-flex rounded-md p-1 hover:bg-gray-200 transition-colors" ref={index == ID ? btnOfElement : null}>
+                                    <button
+                                        aria-label='actions'
+                                        onClick={() => selectElement(index)}
+                                        className="text-gray-600 cursor-pointer bg-gray-100 inline-flex rounded-md p-1 hover:bg-gray-200 transition-colors"
+                                        ref={index === ID ? btnOfElement : null}
+                                    >
                                         <MoreVertIcon style={{ fontSize: '18px' }} />
                                     </button>
-                                    <div className={`absolute -left-10 duration-300 bottom-0 ${index == ID && open ? '' : 'hidden'}`} ref={index == ID ? catchElement : null}>
+                                    <div
+                                        className={`absolute -left-10 duration-300 bottom-0 ${index === ID && open ? '' : 'hidden'}`}
+                                        ref={index === ID ? catchElement : null}
+                                    >
                                         <ShowActions id={index} pathDetails={'detailsUser'} pathEdite={'editeUser'} />
                                     </div>
                                 </td>
@@ -89,21 +127,20 @@ export const AllUsers = () => {
             </div>
 
             {/* إضافة بعض الإحصائيات */}
-            {<div className="mt-4 grid grid-cols-3 gap-3 text-center">
+            <div className="mt-4 grid grid-cols-3 gap-3 text-center">
                 <div className="bg-gray-500 p-2 rounded-lg text-white">
-                    <p className="text-sm"> Total Users</p>
-                    <p className="font-bold text-lg">{User[0]?.users.length}</p>
+                    <p className="text-sm">Total Users</p>
+                    <p className="font-bold text-lg">{filteredUsers.length}</p>
                 </div>
                 <div className="bg-gray-600 p-2 rounded-lg text-white">
                     <p className="text-sm">Total Admins</p>
-                    <p className="font-bold text-lg">{User[0]?.users.filter(u => u.role === 'admin').length}</p>
+                    <p className="font-bold text-lg">{filteredUsers.filter(u => u.role === 'admin').length}</p>
                 </div>
                 <div className="bg-gray-700 p-2 rounded-lg text-white">
-                    <p className="text-sm">Total Sallers</p>
-                    <p className="font-bold text-lg">{User[0]?.users.filter(u => u.role === 'seller').length}</p>
+                    <p className="text-sm">Total Sellers</p>
+                    <p className="font-bold text-lg">{filteredUsers.filter(u => u.role === 'seller').length}</p>
                 </div>
-            </div>}
+            </div>
         </div>
     );
 };
-

@@ -12,7 +12,14 @@ const productSlice = createSlice({
         loading: true,
         error: null,
     },
-    reducers: {},
+    reducers: {
+        deleteUser: (state, action) => {
+            // action.payload = id
+            state.users[0].users = state.users[0].users.filter(
+                (user) => user.id !== action.payload
+            );
+        },
+    },
     extraReducers: (builder) => {
         /* pending */
         builder.addCase(callProduct.pending, (state) => {
@@ -28,7 +35,7 @@ const productSlice = createSlice({
         builder.addCase(callProduct.rejected, (state, action) => {
             state.loading = false;
             state.products = [];
-            state.error = action.error.message;
+            state.error = action.payload || action.error.message;
         })
     }
 });
