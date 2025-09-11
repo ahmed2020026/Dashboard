@@ -5,9 +5,9 @@ import axios from "axios";
 /* call products */
 export const callProduct = createAsyncThunk("product/callProduct", async () => {
     const response = await axios.get(
-        "https://fakestoreapi.in/api/products?limit=10&page=1"
+        "https://fakestoreapi.com/products?limit=10"
     );
-    return response.data.products;
+    return response.data;
 });
 
 /* call Users */

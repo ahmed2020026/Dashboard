@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom'
 import { FieldInput } from '../component/FieldInput';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import ColorLensIcon from '@mui/icons-material/ColorLens';
-import LogoDevIcon from '@mui/icons-material/LogoDev';
+import TagIcon from '@mui/icons-material/Tag';
 import { InputFile } from '../component/InputFile';
 import { useDispatch, useSelector } from 'react-redux';
 import { callProduct } from '../redux/callApi';
@@ -14,11 +13,9 @@ export const AddProduct = () => {
     const [name, setName] = useState('')
     const [category, setCategory] = useState('')
     const [price, setPrice] = useState('')
-    const [discount, setDiscount] = useState('')
+    const [count, setCount] = useState(0)
     const [image, setImage] = useState(null)
     const [discription, setDiscription] = useState('')
-    const [color, setColor] = useState('')
-    const [brand, setBrand] = useState('')
 
     const products = useSelector((state) => state.products.products);
     const dispatch = useDispatch();
@@ -31,20 +28,16 @@ export const AddProduct = () => {
             setName(products[id]?.title)
             setCategory(products[id]?.category)
             setPrice(products[id]?.price)
-            setDiscount(products[id]?.discount || '0')
+            setCount(products[id]?.rating.count || '0')
             setImage(products[id]?.image || '')
             setDiscription(products[id]?.description)
-            setColor(products[id]?.color)
-            setBrand(products[id]?.brand)
         } else {
             setName('')
             setCategory('')
             setPrice('')
-            setDiscount('')
+            setCount('')
             setImage('')
             setDiscription('')
-            setColor('')
-            setBrand('')
         }
     }, [id, products]);
 
@@ -88,27 +81,11 @@ export const AddProduct = () => {
                                 icon={<AttachMoneyIcon />}
                             />
                             <FieldInput
-                                label={'Product Discount'}
-                                value={discount}
-                                onChange={(e) => setDiscount(e.target.value)}
+                                label={'Product Count'}
+                                value={count}
+                                onChange={(e) => setCount(e.target.value)}
                                 placeholder="product discount"
-                                icon={<AttachMoneyIcon />}
-                            />
-                        </div>
-                        <div className='space-y-4 md:grid md:grid-cols-2 gap-5'>
-                            <FieldInput
-                                label={'Product Color'}
-                                value={color}
-                                onChange={(e) => setColor(e.target.value)}
-                                placeholder="product color"
-                                icon={<ColorLensIcon />}
-                            />
-                            <FieldInput
-                                label={'Product brand'}
-                                value={brand}
-                                onChange={(e) => setBrand(e.target.value)}
-                                placeholder="product brand"
-                                icon={<LogoDevIcon />}
+                                icon={<TagIcon />}
                             />
                         </div>
                     </div>

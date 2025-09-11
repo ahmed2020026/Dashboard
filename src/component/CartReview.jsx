@@ -1,4 +1,5 @@
-import StarRateIcon from '@mui/icons-material/StarRate';
+import { Rate } from './Rate';
+
 export const CartReview = ({ avater, name, date, rate, review }) => {
 
     return (
@@ -16,16 +17,7 @@ export const CartReview = ({ avater, name, date, rate, review }) => {
                 </div>
 
                 {/* Rating */}
-                <div className="flex">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                        <StarRateIcon
-                            key={i}
-                            size={18}
-                            className={`${i <= rate ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
-                                }`}
-                        />
-                    ))}
-                </div>
+                <Rate rate={rate} size={18}/>
 
                 {/* Review Text */}
                 <p className="text-gray-700">{review}</p>

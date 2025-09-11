@@ -12,19 +12,16 @@ import { UsersComponent } from "../component/UsersComponent";
 
 export const Dashboard = () => {
     const Order = useSelector(state => state.orders.orders);
-    const Product = useSelector(state => state.products.products)
     const User = useSelector(state => state.users.users)
 
     const Dispatch = useDispatch();
     useEffect(() => {
-        if (!Order || Order.length == 0) Dispatch(callOrder())
-    }, [Dispatch, Order])
+        if (Order.length == 0) Dispatch(callOrder())
+    }, [Dispatch])
+    
     useEffect(() => {
-        if (!Product || Product.length == 0) Dispatch(callProduct())
-    }, [Dispatch, Product])
-    useEffect(() => {
-        if (!User || User.length == 0) Dispatch(callUser())
-    }, [Dispatch, User])
+        if (User.length == 0) Dispatch(callUser())
+    }, [Dispatch])
 
     return (
         <>

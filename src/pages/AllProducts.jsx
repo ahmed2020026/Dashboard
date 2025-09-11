@@ -5,15 +5,15 @@ import { useOutsideClick } from "../hooks/useOutSide";
 import { Link } from "react-router-dom";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { ShowActions } from "../component/showActions";
-
+import { Rate } from '../component/Rate'
+import { ProductSkeleton } from "../component/Skilton";
 
 export const AllProducts = () => {
-    const products = useSelector((state) => state.products.products);
+    const products = useSelector((state) => state.products);
     const dispatch = useDispatch();
     useEffect(() => {
-        if (products.length == 0) dispatch(callProduct())
-    }, [dispatch, products])
-
+        if (products.products.length == 0) dispatch(callProduct())
+    }, [dispatch])
     /* select Element And Show Detail, edit , delete */
     const catchElement = useRef();
     const btnOfElement = useRef();
@@ -42,7 +42,7 @@ export const AllProducts = () => {
                                 Price
                             </th>
                             <th className="border-b border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-700">
-                                Discount
+                                Category
                             </th>
                             <th className="border-b border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-700">
                                 Actions
@@ -50,50 +50,53 @@ export const AllProducts = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {products.map((product, index) => (
-                            <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
-                                <td className="px-4 py-3 flex items-start gap-3 text-right">
-                                    <div className="overflow-hidden rounded-full shrink-0">
-                                        <img src={product.image} width="40" height="40" alt={'pro'} className="rounded-full" />
-                                    </div>
-                                    <div className='text-left  overflow-hidden text-ellipsis'>
-                                        <h3 className="font-medium text-gray-900 truncate line-clamp-2">{product.title}</h3>
-                                        <p className="text-xs text-gray-600">{product.category}</p>
-                                    </div>
-                                </td>
-                                <td className="px-4 py-3 text-center">{product.price}$</td>
-                                
-                                <td className="px-4 py-3 text-center text-red-500">{product.discount || 0}%</td>
-                                
-                                <td className="px-4 py-3 text-center relative">
-                                    <button aria-label="actions" onClick={() => selectElement(index)} className="text-gray-600 cursor-pointer bg-gray-100 inline-flex rounded-md p-1 hover:bg-gray-200 transition-colors" ref={index == ID ? btnOfElement : null}>
-                                        <MoreVertIcon style={{ fontSize: '18px' }} />
-                                    </button>
-                                    <div className={`absolute left-10 duration-300 bottom-0 ${index == ID && open ? '' : 'hidden'}`} ref={index == ID ? catchElement : null}>
-                                        <ShowActions id={index} pathDetails={'detailsProduct'} pathEdite={'editeProduct'} />
-                                    </div>
-                                </td>
-                            </tr>
-                        ))}
+                        {
+                            !products.loading ? (
+                                products?.products.map((product, index) => (
+                                    <tr key={index} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                                        <td className="px-4 py-3 flex items-start gap-3 text-right">
+                                            <div className="overflow-hidden rounded-full shrink-0 flex items-center justify-center">
+                                                <img src={product.image} alt={'pro'} className="rounded-full w-9 max-h-10" />
+                                            </div>
+                                            <div className='text-left  overflow-hidden text-ellipsis'>
+                                                <h3 className="font-medium text-gray-900 truncate line-clamp-2">{product.title}</h3>
+                                                <Rate rate={products?.products[0].rating.rate} size={15} />
+                                            </div>
+                                        </td>
+                                        <td className="px-4 py-3 text-center">{product.price}$</td>
+
+                                        <td className="px-4 py-3 text-center ">{product.category}</td>
+
+                                        <td className="px-4 py-3 text-center relative">
+                                            <button aria-label="actions" onClick={() => selectElement(index)} className="text-gray-600 cursor-pointer bg-gray-100 inline-flex rounded-md p-1 hover:bg-gray-200 transition-colors" ref={index == ID ? btnOfElement : null}>
+                                                <MoreVertIcon style={{ fontSize: '18px' }} />
+                                            </button>
+                                            <div className={`absolute left-10 duration-300 bottom-0 ${index == ID && open ? '' : 'hidden'}`} ref={index == ID ? catchElement : null}>
+                                                <ShowActions id={index} pathDetails={'detailsProduct'} pathEdite={'editeProduct'} />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                                    <td className="px-4 py-3 text-center">
+                                        <ProductSkeleton />
+                                    </td>
+                                    <td className="px-4 py-3 text-center">
+                                        <ProductSkeleton />
+                                    </td>
+                                    <td className="px-4 py-3 text-center">
+                                        <ProductSkeleton />
+                                    </td>
+                                    <td className="px-4 py-3 text-center">
+                                        <ProductSkeleton />
+                                    </td>
+                                </tr>
+                            )
+                        }
                     </tbody>
                 </table>
             </div>
-
-            {/* إضافة بعض الإحصائيات */}
-            {/* <div className="mt-4 grid grid-cols-3 gap-3 text-center">
-                <div className="bg-gray-500 p-2 rounded-lg text-white">
-                    <p className="text-sm"> Total Users</p>
-                    <p className="font-bold text-lg">{products.length}</p>
-                </div>
-                <div className="bg-gray-600 p-2 rounded-lg text-white">
-                    <p className="text-sm">Total Admins</p>
-                    <p className="font-bold text-lg">{.filter(u => u.role === 'admin').length}</p>
-                </div>
-                <div className="bg-gray-700 p-2 rounded-lg text-white">
-                    <p className="text-sm">Total Sallers</p>
-                    <p className="font-bold text-lg">{User[0]?.users.filter(u => u.role === 'seller').length}</p>
-                </div>
-            </div> */}
         </div>
     );
 }
