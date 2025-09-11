@@ -1,7 +1,7 @@
 import { Kpi } from "../component/kpi"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { callOrder, callProduct, callUser } from "../redux/callApi"
+import { callOrder, callUser } from "../redux/callApi"
 import ViewListIcon from '@mui/icons-material/ViewList';
 import RealEstateAgentIcon from '@mui/icons-material/RealEstateAgent';
 import CategoryIcon from '@mui/icons-material/Category';
@@ -12,7 +12,7 @@ import { UsersComponent } from "../component/UsersComponent";
 
 export const Dashboard = () => {
     const Order = useSelector(state => state.orders.orders);
-    const User = useSelector(state => state.users.users)
+    const User = useSelector(state => state.users)
 
     const Dispatch = useDispatch();
     useEffect(() => {
@@ -20,13 +20,12 @@ export const Dashboard = () => {
     }, [Dispatch])
     
     useEffect(() => {
-        if (User.length == 0) Dispatch(callUser())
+        if (User.users.length == 0) Dispatch(callUser())
     }, [Dispatch])
-
     return (
         <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
-                <Kpi title='Total Users' bgColor={'bg-gradient-to-r from-indigo-500 to-purple-500'} icon={<GroupIcon />} total={`${User[0]?.total}k`} />
+                <Kpi title='Total Users' bgColor={'bg-gradient-to-r from-indigo-500 to-purple-500'} icon={<GroupIcon />} total={`${User.users[0]?.total}k`} />
                 <Kpi title='Total Products' bgColor={'bg-gradient-to-r from-teal-400 to-cyan-500'} icon={<CategoryIcon />} total={`${Order.salesVolume}k`} />
                 <Kpi title='Total Orders' bgColor={'bg-gradient-to-r from-orange-400 to-pink-500'} icon={<ViewListIcon />} total={`${Order.total}k`} />
                 <Kpi title='Total Sales' bgColor={'bg-gradient-to-r from-green-400 to-emerald-600'} icon={<RealEstateAgentIcon />} total={`${Order.totalSales}$`} />

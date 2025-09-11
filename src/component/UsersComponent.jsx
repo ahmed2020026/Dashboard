@@ -1,5 +1,6 @@
-import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
-export const UsersComponent = ({ users }) => {
+import { ProductSkeleton } from "./Skilton";
+
+export const UsersComponent = ({ users}) => {
     return (
         <div className="w-full overflow-x-auto">
             <table className="w-full min-w-[700px] border-collapse">
@@ -18,49 +19,66 @@ export const UsersComponent = ({ users }) => {
                 </thead>
 
                 <tbody>
-                    {users[0]?.users.map(
-                        (user, index) =>
-                            index < 5 && (
-                                <tr
-                                    key={index}
-                                    className="border-b border-gray-100 hover:bg-gray-50 transition"
-                                >
-                                    {/* User info */}
-                                    <td className="px-4 py-3 flex items-center gap-3">
-                                        <div className="overflow-hidden rounded-full shrink-0 w-10 h-10">
-                                            <img
-                                                src={user.image}
-                                                alt="user avatar"
-                                                className="w-full h-full object-cover"
-                                            />
-                                        </div>
-                                        <div>
-                                            <h3 className="font-medium text-sm text-gray-800">
-                                                {user.name}
-                                            </h3>
-                                            <p className="text-xs text-gray-500">{user.email}</p>
-                                        </div>
-                                    </td>
+                    {!users.loading ? (
+                        users.users[0]?.users.map(
+                            (user, index) =>
+                                index < 5 && (
+                                    <tr
+                                        key={index}
+                                        className="border-b border-gray-100 hover:bg-gray-50 transition"
+                                    >
+                                        {/* User info */}
+                                        <td className="px-4 py-3 flex items-center gap-3">
+                                            <div className="overflow-hidden rounded-full shrink-0 w-10 h-10">
+                                                <img
+                                                    src={user.image}
+                                                    alt="user avatar"
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            </div>
+                                            <div>
+                                                <h3 className="font-medium text-sm text-gray-800">
+                                                    {user.name}
+                                                </h3>
+                                                <p className="text-xs text-gray-500">{user.email}</p>
+                                            </div>
+                                        </td>
 
-                                    {/* Phone */}
-                                    <td className="px-4 py-3 text-center text-sm text-gray-700">
-                                        {user.phone}
-                                    </td>
+                                        {/* Phone */}
+                                        <td className="px-4 py-3 text-center text-sm text-gray-700">
+                                            {user.phone}
+                                        </td>
 
-                                    {/* Role */}
-                                    <td className="px-4 py-3 text-center">
-                                        <select
-                                            className="border border-gray-300 bg-white text-sm rounded-md p-1 px-2 cursor-pointer focus:ring-1 focus:ring-sky-400 outline-none"
-                                            defaultValue={user.role}
-                                            aria-label='role'
-                                        >
-                                            <option value="admin">Admin</option>
-                                            <option value="customer">Customer</option>
-                                            <option value="seller">Seller</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                            )
+                                        {/* Role */}
+                                        <td className="px-4 py-3 text-center">
+                                            <select
+                                                className="border border-gray-300 bg-white text-sm rounded-md p-1 px-2 cursor-pointer focus:ring-1 focus:ring-sky-400 outline-none"
+                                                defaultValue={user.role}
+                                                aria-label='role'
+                                            >
+                                                <option value="admin">Admin</option>
+                                                <option value="customer">Customer</option>
+                                                <option value="seller">Seller</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                )
+                        )
+                    ) : (
+                        <tr className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                            <td className="px-4 py-3 text-center">
+                                <ProductSkeleton />
+                            </td>
+                            <td className="px-4 py-3 text-center">
+                                <ProductSkeleton />
+                            </td>
+                            <td className="px-4 py-3 text-center">
+                                <ProductSkeleton />
+                            </td>
+                            <td className="px-4 py-3 text-center">
+                                <ProductSkeleton />
+                            </td>
+                        </tr>
                     )}
                 </tbody>
             </table>
