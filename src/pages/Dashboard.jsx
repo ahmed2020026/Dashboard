@@ -13,15 +13,13 @@ import { UsersComponent } from "../component/UsersComponent";
 export const Dashboard = () => {
     const Order = useSelector(state => state.orders.orders);
     const User = useSelector(state => state.users)
-
     const Dispatch = useDispatch();
+
     useEffect(() => {
         if (Order.length == 0) Dispatch(callOrder())
-    }, [Dispatch])
-    
-    useEffect(() => {
         if (User.users.length == 0) Dispatch(callUser())
     }, [Dispatch])
+
     return (
         <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
